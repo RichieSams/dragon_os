@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup SVU
+        id: svu
+        uses: obfu5c8/action-svu@v1.0.0
+        with:
+          svu-version: 2.2.0
+      - name: Create git tag
+        run: git tag ${{ steps.svu.outputs.version }}
+      - name: Push tag to origin
+        run: git push origin ${{ steps.svu.outputs.version }}
+      - name: Build
+        run: make build
+      - name: Generate changelog
+        id: git-cliff
+        uses: orhun/git-cliff-action@v3.0.2
+        with:
+          args: --latest --strip all
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.svu.outputs.version }}
+          name: Release ${{ steps.svu.outputs.version }}
+          body: ${{ steps.git-cliff.outputs.content }}

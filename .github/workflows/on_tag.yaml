@@ -1,0 +1,10 @@
+name: Release on Manual Tag
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    uses: ./.github/workflows/release.yaml
