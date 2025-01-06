@@ -22,8 +22,6 @@ jobs:
         run: git tag ${{ steps.svu.outputs.version }}
       - name: Push tag to origin
         run: git push origin ${{ steps.svu.outputs.version }}
-      - name: Build
-        run: make build
       - name: Generate changelog
         id: git-cliff
         uses: orhun/git-cliff-action@v3.0.2
