@@ -29,7 +29,7 @@ pub fn build(b: *std.Build) void {
         .format = .bin,
     });
     bin.step.dependOn(&exe.step);
-    const copy_bin = b.addInstallBinFile(bin.getOutput(), "kernel.bin");
+    const copy_bin = b.addInstallBinFile(bin.getOutput(), "kernel.img");
     b.default_step.dependOn(&copy_bin.step);
 
     // Produce .hex file from .elf
