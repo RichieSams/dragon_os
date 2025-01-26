@@ -1,11 +1,9 @@
 // zig fmt: off
 
-pub const BASE: comptime_int = 0x107C000000;
-
 const GIO_NUM_REGISTERS_PER_BANK: comptime_int = 8;
 const GIO_BANK_SIZE: comptime_int              = GIO_NUM_REGISTERS_PER_BANK * @sizeOf(u32);
 
-const GIO_BASE: comptime_int              = BASE + 0x1508500;
+const GIO_BASE: comptime_int              = 0x107D508500;
 pub const GIO_BANK0_DATA: *volatile u32   = @ptrFromInt(GIO_BASE + (GIO_BANK_SIZE * 0) + 0x04);
 pub const GIO_BANK0_IO_DIR: *volatile u32 = @ptrFromInt(GIO_BASE + (GIO_BANK_SIZE * 0) + 0x08);
 pub const GIO_BANK1_DATA: *volatile u32   = @ptrFromInt(GIO_BASE + (GIO_BANK_SIZE * 1) + 0x04);
@@ -69,7 +67,7 @@ pub const GIO_BANK1_LINE_WIFI_SDIO_D2: comptime_int = 1 << 2;
 pub const GIO_BANK1_LINE_GPIO_035: comptime_int     = 1 << 3;
 pub const GIO_BANK1_LINE_WIFI_SDIO_D3: comptime_int = 1 << 3;
 
-const GIO_ALWAYS_ON_BASE: comptime_int              = BASE + 0x1517C00;
+const GIO_ALWAYS_ON_BASE: comptime_int              = 0x107D517C00;
 pub const GIO_ALWAYS_ON_BANK0_DATA: *volatile u32   = @ptrFromInt(GIO_ALWAYS_ON_BASE + (GIO_BANK_SIZE * 0) + 0x04);
 pub const GIO_ALWAYS_ON_BANK0_IO_DIR: *volatile u32 = @ptrFromInt(GIO_ALWAYS_ON_BASE + (GIO_BANK_SIZE * 0) + 0x08);
 pub const GIO_ALWAYS_ON_BANK1_DATA: *volatile u32   = @ptrFromInt(GIO_ALWAYS_ON_BASE + (GIO_BANK_SIZE * 1) + 0x04);
