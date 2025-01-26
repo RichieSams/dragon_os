@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "gdb",
+            "request": "launch",
+            "name": "Debug Kernel",
+            "target": "${workspaceRoot}/build/bin/kernel.elf",
+            "gdbpath": "gdb-multiarch",
+            "cwd": "${workspaceRoot}",
+            "autorun": [
+                "target extended-remote :3333",
+                "file ${workspaceRoot}/build/bin/kernel.elf"
+            ]
+        }
+    ]
+}
